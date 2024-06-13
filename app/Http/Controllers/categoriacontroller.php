@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categoria;
 use Illuminate\Http\Request;
-use app\Models\categoria;
 
-
-class categoriacontroller extends Controller
+class CategoriaController extends Controller
 {
-    public function getCategoria(){
-        return response()->json(categoria::all(),200);
+    public function index()
+    {
+        return Categoria::all();
     }
 }
