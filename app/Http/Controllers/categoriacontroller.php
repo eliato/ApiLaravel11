@@ -9,7 +9,11 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        return Categoria::all();
+         // Selecciona solo las columnas 'id' y 'nombre'
+         $categorias = Categoria::select('id', 'cat_nom', 'cat_obs')->get();
+         return response()->json($categorias, 200);
+
+       // esto retorna todas las columnas return Categoria::all();
     }
 
     public function store(Request $request)
@@ -21,7 +25,7 @@ class CategoriaController extends Controller
     public function show($id)
     {
         try {
-            $categoria = Categoria::findOrFail($id);
+            $categoria = Categoria::select('id', 'cat_nom', 'cat_obs')->findOrFail($id);
             return response()->json($categoria, 200);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Categoría no encontrada'], 404);
