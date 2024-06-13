@@ -9,4 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+//Trae todas las categorias
 Route::get('/categorias', [CategoriaController::class, 'index']);
+
+//busca una categoria x id
+Route::get('/categorias/{id}', [CategoriaController::class, 'show']);

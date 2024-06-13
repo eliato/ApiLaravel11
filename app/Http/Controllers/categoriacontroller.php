@@ -11,4 +11,9 @@ class CategoriaController extends Controller
     {
         return Categoria::all();
     }
+
+    public function show($id)
+    {
+        return Categoria::findOrFail($id);
+    }
 }
