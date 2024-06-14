@@ -16,12 +16,15 @@ class CategoriaController extends Controller
        // esto retorna todas las columnas return Categoria::all();
     }
 
+    //metodo que guarda una categoria
     public function store(Request $request)
     {
         $categoria = Categoria::create($request->all());
         return response()->json($categoria, 201);
     }
 
+
+    //metodo que trae una categoria en especifico por ID
     public function show($id)
     {
         try {
@@ -31,4 +34,26 @@ class CategoriaController extends Controller
             return response()->json(['message' => 'Categoría no encontrada'], 404);
         }
     }
+
+    //Métdo que actualiza una categoria por su ID
+    public function update(Request $request, $id) 
+    {
+        try {
+            
+            $categoria = Categoria::findOrFail($id);
+            $categoria -> update($request->all());
+            return response()->json($categoria, 200);
+
+        } catch (ModelNotFoundException $e) {
+            
+            return response()->json(['mensaje' => 'Categoria no encontrada', 204]);
+
+        }
+    
+            
+    }    
+
+    
+
+
 }

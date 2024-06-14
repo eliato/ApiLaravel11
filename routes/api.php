@@ -17,3 +17,6 @@ Route::post('/categorias', [CategoriaController::class, 'store']);
 
 //busca una categoria x id
 Route::get('/categorias/{id}', [CategoriaController::class, 'show']);
+
+//actualiza una categoria x un id
+Route::put('/categorias/{id}', [CategoriaController::class, 'update']);
