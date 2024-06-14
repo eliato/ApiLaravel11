@@ -20,3 +20,6 @@ Route::get('/categorias/{id}', [CategoriaController::class, 'show']);
 
 //actualiza una categoria x un id
 Route::put('/categorias/{id}', [CategoriaController::class, 'update']);
+
+//elimina una categoria x un id
+Route::delete('/categorias/{id}',[CategoriaController::class, 'destroy']);

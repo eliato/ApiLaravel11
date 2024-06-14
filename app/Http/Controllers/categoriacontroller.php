@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\categoria;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
+
 class CategoriaController extends Controller
 {
     public function index()
@@ -46,13 +48,24 @@ class CategoriaController extends Controller
 
         } catch (ModelNotFoundException $e) {
             
-            return response()->json(['mensaje' => 'Categoria no encontrada', 204]);
+            return response()->json(['mensaje' => 'Categoria no encontrada'], 404);
 
         }
-    
-            
+                
     }    
 
+    //metedo que elimina una categoria
+    public function destroy($id)
+    {
+
+        try {
+            Categoria::findOrFail($id)->delete();
+            return response()->json(['mensaje' => 'Categoria eliminada con exito!!'], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['mensaje' => 'Categoria no encontrada'], 404);
+        }
+        
+    }
     
 
 
